@@ -7,7 +7,10 @@ BRANCH_NAME = "main"
 
 def get_all_files_to_commit():
     os.chdir(PROJECT_PATH)
-    result = subprocess.run(["git", "status", "--porcelain", "--untracked-files=all"], capture_output=True, text=True)
+    result = subprocess.run(
+        ["git", "status", "--porcelain", "--untracked-files=all"],
+        capture_output=True, text=True
+    )
     lines = result.stdout.splitlines()
     files_to_commit = []
 
@@ -16,7 +19,7 @@ def get_all_files_to_commit():
         path = line[3:].strip()
         full_path = os.path.join(PROJECT_PATH, path)
 
-        # هرچیزی که جدید یا تغییر کرده
+        # هم فایل‌های جدید هم تغییر کرده‌ها
         if status in ("??", " M", "M ", "MM", "AM", "A "):
             if os.path.isfile(full_path):
                 files_to_commit.append(path)
