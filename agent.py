@@ -1,19 +1,13 @@
 import os
 import subprocess
 
-# ----------------------------
-# ✨ CONFIG SECTION
-# ----------------------------
 PROJECT_PATH = r"D:\Boot Camp\git"  # مسیر پروژه
 COMMIT_MESSAGE_TEMPLATE = "✅ Added: {file_name}"
 BRANCH_NAME = "main"
 
-# ----------------------------
-# ✅ FUNCTIONS
-# ----------------------------
 def get_all_files_to_commit():
     os.chdir(PROJECT_PATH)
-    result = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True)
+    result = subprocess.run(["git", "status", "--porcelain", "--untracked-files=all"], capture_output=True, text=True)
     lines = result.stdout.splitlines()
     files_to_commit = []
 
@@ -22,36 +16,30 @@ def get_all_files_to_commit():
         path = line[3:].strip()
         full_path = os.path.join(PROJECT_PATH, path)
 
-        # فایل جدید یا تغییر کرده
+        # هرچیزی که جدید یا تغییر کرده
         if status in ("??", " M", "M ", "MM", "AM", "A "):
             if os.path.isfile(full_path):
                 files_to_commit.append(path)
-            elif os.path.isdir(full_path):  # پوشه → برو همه فایل‌های داخلش رو بیار
+            elif os.path.isdir(full_path):
                 for root, _, files in os.walk(full_path):
                     for file in files:
-                        relative_path = os.path.relpath(os.path.join(root, file), PROJECT_PATH)
-                        files_to_commit.append(relative_path)
+                        rel_path = os.path.relpath(os.path.join(root, file), PROJECT_PATH)
+                        files_to_commit.append(rel_path)
 
     return files_to_commit
-
 
 def git_add_commit(file_path):
     subprocess.run(["git", "add", file_path])
     message = COMMIT_MESSAGE_TEMPLATE.format(file_name=file_path)
     subprocess.run(["git", "commit", "-m", message])
 
-
 def git_push():
     subprocess.run(["git", "push", "origin", BRANCH_NAME])
 
-
-# ----------------------------
-# 🚀 RUN
-# ----------------------------
 if __name__ == "__main__":
     os.chdir(PROJECT_PATH)
-
     files = get_all_files_to_commit()
+
     if not files:
         print("❌ No new files to commit.")
     else:
