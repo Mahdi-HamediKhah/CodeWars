@@ -5,8 +5,9 @@
 //     : cur === "[" ? (acc += 100) : cur === "]" ? (acc -= 100);
 //     return acc
 //   }, 0);
-
+//
 //   return result == 0 ? true : false;
 // }
 
 // validBraces("(){}[]");
+getSelection
