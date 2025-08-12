@@ -16,5 +16,3 @@ function goodVsEvil(good, evil) {
     ? "Battle Result: Evil eradicates all trace of Good"
     : "Battle Result: No victor on this battle field";
 }
-
-// goodVsEvil("0 0 0 0 0 10", "0 1 1 1 1 0 0");
