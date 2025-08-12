@@ -8,7 +8,7 @@ function solution(roman) {
     D: 500,
     M: 1000,
   };
-  let romanArray = roman.split("");
+  const romanArray = roman.split("");
   let result = romanArray.reduce((acc, cur, index, arr) => {
     if (index === 0) return romanValues[cur];
     if (romanValues[arr[index]] <= romanValues[arr[index - 1]]) {
