@@ -7,6 +7,6 @@ let isSquare = function (n) {
       return false;
     }
   } else {
-    return false; // fix me
+    return false;
   }
 };
