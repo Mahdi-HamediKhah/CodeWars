@@ -10,4 +10,3 @@
 // }
 
 // validBraces("(){}[]");
-getSelection
