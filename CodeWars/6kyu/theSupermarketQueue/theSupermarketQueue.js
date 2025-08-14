@@ -6,5 +6,3 @@ function queueTime(customers, n) {
   }
   return Math.max(...tills);
 }
-
-queueTime([2, 2, 3, 3, 4, 4], 2);
