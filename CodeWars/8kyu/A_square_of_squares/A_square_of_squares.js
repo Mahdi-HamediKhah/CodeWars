@@ -10,3 +10,5 @@ let isSquare = function (n) {
     return false;
   }
 };
+
+// const isSquare = n => n >= 0 && Number.isInteger(Math.sqrt(n));
