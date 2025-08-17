@@ -6,3 +6,13 @@ function queueTime(customers, n) {
   }
   return Math.max(...tills);
 }
+
+
+// function queueTime(customers, n) {
+//   const tills = Array(n).fill(0);
+//   for (const customer of customers) {
+//     tills.sort((a, b) => a - b);
+//     tills[0] += customer;        
+//   }
+//   return Math.max(...tills);
+// }
