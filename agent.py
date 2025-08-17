@@ -53,3 +53,5 @@ if __name__ == "__main__":
         print("🚀 Pushing to GitHub...")
         git_push()
         print("✅ Done!")
+
+# python agent.py
