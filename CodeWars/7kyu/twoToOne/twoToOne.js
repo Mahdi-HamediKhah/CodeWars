@@ -6,3 +6,7 @@ function longest(s1, s2) {
     .filter((value, i, arr) => arr.indexOf(value) === i)
     .join("");
 }
+
+// function longest(s1, s2) {
+//   return [...new Set(s1 + s2)].sort().join("");
+// }
